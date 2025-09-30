@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Universo de las Enfermedades: Una Guía Completa</title>
+    <style>
+        /* --- FUENTES Y ESTILOS GLOBALES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #005A9C; /* Azul oscuro profesional */
+            --secondary-color: #F8F9FA; /* Gris claro para fondos */
+            --accent-color: #00C6A7; /* Verde menta para acentos */
+            --text-color: #333;
+            --light-text-color: #555;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px_15px rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        /* --- CONTENEDORES Y ESTRUCTURA --- */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+
+        /* --- HEADER Y NAVEGACIÓN --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px_10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 25px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: var(--light-text-color);
+            font-weight: 600;
+            transition: color var(--transition-speed);
+        }
+
+        .navbar .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION (INTRO) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            padding-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* --- ESTILOS DE TÍTULOS Y TEXTO --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--light-text-color);
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        /* --- DISEÑO DE TARJETAS (CARDS) --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* --- SECCIONES ESPECÍFICAS --- */
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .timeline-item {
+            padding: 20px;
+            background: var(--secondary-color);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .timeline-item h3 {
+            color: var(--primary-color);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar container">
+            <a href="#hero" class="logo">Saludpedia</a>
+            <ul class="nav-links">
+                <li><a href="#definicion">Definición</a></li>
+                <li><a href="#causas">Causas</a></li>
+                <li><a href="#sintomas">Síntomas</a></li>
+                <li><a href="#evolucion">Evolución</a></li>
+                <li><a href="#raras">Enfermedades Raras</a></li>
+                <li><a href="#prevencion">Prevención</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>El Universo de las Enfermedades</h1>
+                <p>Una guía completa para comprender sus causas, síntomas y cómo prevenirlas.</p>
+            </div>
+        </section>
+
+        <section id="definicion" class="container">
+            <h2 class="section-title">¿Qué es una Enfermedad?</h2>
+            <p class="section-subtitle">
+                Una enfermedad es una alteración del estado fisiológico en una o varias partes del cuerpo, por causas generalmente conocidas, manifestada por síntomas y signos característicos, y cuya evolución es más o menos previsible.
+            </p>
+            <div class="grid">
+                 <div class="card">
+                    <div class="icon">🦠</div>
+                    <h3>Infecciosas</h3>
+                    <p>Causadas por microorganismos patógenos como virus, bacterias o parásitos (Ej: Gripe, COVID-19).</p>
+                </div>
+                <div class="card">
+                    <div class="icon">❤</div>
+                    <h3>No Infecciosas</h3>
+                    <p>Desórdenes genéticos, metabólicos, degenerativos o por estilo de vida (Ej: Diabetes, hipertensión).</p>
+                </div>
+                <div class="card">
+                    <div class="icon">⚡</div>
+                    <h3>Agudas</h3>
+                    <p>Aparecen repentinamente y tienen una duración corta (Ej: Apendicitis, gastroenteritis).</p>
+                </div>
+                <div class="card">
+                    <div class="icon">⏳</div>
+                    <h3>Crónicas</h3>
+                    <p>Se desarrollan lentamente y perduran por años o toda la vida (Ej: Asma, artritis).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="causas" class="container">
+            <h2 class="section-title">Origen y Factores de Riesgo</h2>
+            <p class="section-subtitle">Las enfermedades surgen de una compleja interacción de causas directas y factores que aumentan nuestra vulnerabilidad.</p>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">🧬</div>
+                    <h3>Biológicos</h3>
+                    <p><strong>Causas:</strong> Microorganismos (virus, bacterias) o fallos internos (genéticos, autoinmunes).<br><strong>Factores de Riesgo:</strong> Edad, sexo, predisposición genética.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🌳</div>
+                    <h3>Ambientales</h3>
+                    <p><strong>Causas:</strong> Exposición a toxinas, contaminación, radiación.<br><strong>Factores de Riesgo:</strong> Vivir en zonas contaminadas, condiciones climáticas extremas.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">👥</div>
+                    <h3>Sociales</h3>
+                    <p><strong>Causas:</strong> Estrés crónico por pobreza o discriminación, falta de acceso a servicios.<br><strong>Factores de Riesgo:</strong> Bajo nivel educativo, desempleo, aislamiento social.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sintomas" class="container">
+            <h2 class="section-title">Síntomas: Las Alertas del Cuerpo</h2>
+            <p class="section-subtitle">Los síntomas son las señales que nuestro organismo nos envía para advertir que algo no funciona correctamente. Escucharlos es el primer paso para cuidarnos.</p>
+            <div class="grid">
+                <div class="card"><h3>🌡 Fiebre</h3><p>Aumento de la temperatura corporal, usualmente como respuesta a una infección.</p></div>
+                <div class="card"><h3>🤧 Tos y Congestión</h3><p>Síntomas respiratorios comunes en resfriados, gripes o alergias.</p></div>
+                <div class="card"><h3>🤢 Problemas Digestivos</h3><p>Náuseas, vómitos o diarrea, a menudo por infecciones o intoxicaciones alimentarias.</p></div>
+                <div class="card"><h3>🤕 Dolor de Cabeza</h3><p>Puede ser causado por estrés, deshidratación, tensión muscular o ser síntoma de otra afección.</p></div>
+                <div class="card"><h3>😴 Fatiga Extrema</h3><p>Un cansancio abrumador que no mejora con el descanso, presente en muchas enfermedades.</p></div>
+                <div class="card"><h3>🫁 Dificultad para Respirar</h3><p>Una señal de alerta importante que requiere atención médica inmediata.</p></div>
+            </div>
+        </section>
+        
+        <section id="evolucion" class="container">
+            <h2 class="section-title">La Visión de las Enfermedades a Través del Tiempo</h2>
+            <p class="section-subtitle">Nuestra comprensión de qué causa las enfermedades ha evolucionado drásticamente, pasando de explicaciones místicas a la ciencia basada en evidencia.</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>⚫ Antes (Antigüedad y Edad Media)</h3>
+                    <p><strong>Causas Atribuidas:</strong> Castigos divinos, desequilibrio de los "humores" (sangre, bilis, flema), brujería o "miasmas" (aires envenenados).</p>
+                    <p><strong>Tratamientos:</strong> Sangrías, amuletos, rezos y remedios caseros exóticos como el polvo de momia.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🔬 Hoy (Edad Moderna y Contemporánea)</h3>
+                    <p><strong>Causas Entendidas:</strong> Gracias a la teoría microbiana (Pasteur y Koch), hoy sabemos que las causas son agentes patógenos, factores genéticos, ambientales y de estilo de vida.</p>
+                    <p><strong>Tratamientos:</strong> Antibióticos, vacunas, cirugía avanzada, terapias génicas y un fuerte enfoque en la medicina preventiva.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="raras" class="container">
+            <h2 class="section-title">El Mundo de las Enfermedades Raras</h2>
+            <p class="section-subtitle">Se consideran "raras" cuando afectan a menos de 5 de cada 10,000 personas, pero en conjunto impactan a millones a nivel mundial.</p>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">🧠</div>
+                    <h3>Datos Clave</h3>
+                    <p>Existen más de 7,000 tipos identificados. El 70% tiene origen genético y suele aparecer en la infancia. El diagnóstico puede tardar años, un viaje conocido como la "odisea diagnóstica".</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🧪</div>
+                    <h3>La Prueba del Talón</h3>
+                    <p>Es un examen crucial que se realiza a recién nacidos para detectar tempranamente varias de estas enfermedades (como fenilcetonuria o fibrosis quística) antes de que causen un daño irreversible.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="impacto" class="container">
+            <h2 class="section-title">Impacto Más Allá del Cuerpo</h2>
+            <p class="section-subtitle">Una enfermedad no solo afecta al paciente, sino que sus ondas expansivas alcanzan a toda la sociedad y la economía.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Impacto Social</h3>
+                    <p>Puede generar estigmatización, aislamiento y discriminación. Afecta gravemente la salud mental, causando frustración y desesperación, especialmente en grupos vulnerables.</p>
+                </div>
+                <div class="card">
+                    <h3>Impacto Económico</h3>
+                    <p>Satura los sistemas de salud, provoca pérdidas masivas de productividad por ausentismo laboral, aumenta la desigualdad y puede impactar indicadores macroeconómicos como la inflación y la deuda pública.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prevencion" class="container">
+            <h2 class="section-title">El Poder de la Prevención y la Promoción</h2>
+            <p class="section-subtitle">La mejor medicina es la que no se necesita. Invertir en salud es la estrategia más inteligente y compasiva.</p>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">🌟</div>
+                    <h3>Promoción de la Salud</h3>
+                    <p>Se enfoca en el bienestar general, creando entornos y políticas que faciliten las decisiones saludables para todos (ej: parques seguros, etiquetado de alimentos).</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🛡</div>
+                    <h3>Prevención de Enfermedades</h3>
+                    <p>Son acciones directas para evitar la enfermedad: <strong>Primaria</strong> (vacunas, ejercicio), <strong>Secundaria</strong> (chequeos médicos para detección temprana) y <strong>Terciaria</strong> (rehabilitación para controlar una enfermedad ya existente).</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Saludpedia. Todos los derechos reservados. Creado con fines informativos.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- ANIMACIÓN DE SECCIONES AL HACER SCROLL ---
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- OCULTAR HEADER AL HACER SCROLL HACIA ABAJO ---
+            let lastScrollTop = 0;
+            const header = document.querySelector('.main-header');
+            window.addEventListener("scroll", function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 70) {
+                    header.style.top = "-70px";
+                } else {
+                    header.style.top = "0";
+                }
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
+</body>
+</html>
